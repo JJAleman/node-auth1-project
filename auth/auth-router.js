@@ -7,7 +7,7 @@ const Users = require("../users/users-model.js");
 router.post("/register", (req, res) => {
   let user = req.body;
 
-  const hash = bcrypt.hashSync(user.password, 10);
+  const hash = bcrypt.hashSync(user.password, 8);
   user.password = hash;
 
   Users.add(user)
@@ -19,11 +19,9 @@ router.post("/register", (req, res) => {
     });
 });
 
-
-router.post('/login', authorize, (req, res) => {
-    let { username } = req.headers;
-    res.status(200).json({ message: `Welcome ${username}!`});
-
-})
+router.post("/login", authorize, (req, res) => {
+  let { username } = req.headers;
+  res.status(200).json({ message: `Welcome ${username}!` });
+});
 
 module.exports = router;

@@ -4,8 +4,8 @@ const helmet = require("helmet");
 const cors = require("cors");
 
 const server = express();
-server.use(helmet());
-server.use(express.json());
-server.use(cors());
+server.use(helmet(),
+express.json(),
+cors());
 
 module.exports = server;
