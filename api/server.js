@@ -1,13 +1,12 @@
-require("dotenv").config();
+const express = require('express');
 
-const express = require("express");
-const helmet = require("helmet");
+const apiRouter = require('./api-router');
+const configureMiddleware= require('./api-router');
 
 const server = express();
-server.use(helmet());
 
-server.get("/", (req, res) => {
-  res.status(200).json({ message: "It's working!!"});
-});
+configureMiddleware(server);
+
+server.use('/api', apiRouter);
 
 module.exports = server;

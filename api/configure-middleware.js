@@ -1,20 +1,11 @@
-const router = require('express').Router();
+require("dotenv").config();
+const express = require("express");
+const helmet = require("helmet");
+const cors = require("cors");
 
-const authRouter = require('../auth/auth-router.js');
+const server = express();
+server.use(helmet());
+server.use(express.json());
+server.use(cors());
 
-const usersRouter = require('../users/users-router.js');
-
-// Notes to self this will use /api/auth
-router.use('/auth', authRouter);
-
-// this will use /api/users
-router.use('/users', usersRouter);
-
-// api
-router.get('/', (req, res) => {
-    res.json({ api: "It's Live!"});
-});
-
-
-
-module.exports = router;
+module.exports = server;
